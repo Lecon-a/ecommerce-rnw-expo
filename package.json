@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Lecon-a/ecommerce-rnw-expo#readme",
   "dependencies": {
+    "@clerk/nextjs": "^6.36.5",
     "cloudinary": "^2.8.0"
   }
 }
