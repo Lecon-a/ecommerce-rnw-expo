@@ -1,12 +1,27 @@
-import express from "express"
+import express from "express";
+import path from "path";
+import { ENV } from "./config/env.js";
 
-const app = express()
+
+const app = express();
+
+const __dirname = path.resolve();
 
 app.get("/api/health", (req, res) => {
-    res.status(200).json({message: "Success"})
+    res.status(200).json({ message: "Success" });
 })
 
-app.listen(3000, () => {
+// make our app ready for the deployment 
+
+if (ENV.MODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "../admin/dist")))
+
+    app.get("/{*any}", (req, res) => {
+        res.sendFile(path.join(__dirname, "../admin", "dist", "index.html"));
+    })
+}
+
+app.listen(ENV.PORT, () => {
     console.log('====================================');
     console.log("Server is currently running on port 3000");
     console.log('====================================')
