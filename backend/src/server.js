@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import { ENV } from "./config/env.js";
+import { connectDB } from "./config/db.js";
 
 
 const app = express();
@@ -21,8 +22,13 @@ if (ENV.MODE_ENV === "production") {
     })
 }
 
-app.listen(ENV.PORT, () => {
-    console.log('====================================');
-    console.log("Server is currently running on port 3000");
-    console.log('====================================')
-})
+const startServer = async () => {
+    await connectDB();
+    app.listen(ENV.PORT, () => {
+        console.log('====================================');
+        console.log("Server is currently running on port 3000");
+        console.log('====================================')
+    })
+};
+
+startServer();
