@@ -5,7 +5,7 @@
       "dest": "/api/index.js"
     },
     {
-      "src": "/",
+      "src": "/*",
       "dest": "/admin/dist/index.html"
     }
   ]
