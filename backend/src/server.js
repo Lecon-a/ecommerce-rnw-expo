@@ -6,6 +6,7 @@ import { ENV } from "./config/env.js";
 const app = express();
 
 const __dirname = path.resolve();
+// const __dirname = path.dirname(new URL(import.meta.url).pathname)
 
 app.get("/api/health", (req, res) => {
     res.status(200).json({ message: "Success" });
