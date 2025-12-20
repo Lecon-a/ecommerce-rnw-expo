@@ -5,7 +5,11 @@
       "dest": "/api/index.js"
     },
     {
-      "src": "/*",
+      "src": "/admin/(.*)",
+      "dest": "/admin/dist/index.html"
+    },
+    {
+      "src": "/(.*)",
       "dest": "/admin/dist/index.html"
     }
   ]
