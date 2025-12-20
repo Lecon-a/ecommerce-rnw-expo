@@ -22,9 +22,13 @@ if (ENV.MODE_ENV === "production") {
     })
 }
 
-app.listen(ENV.PORT, () => {
-    console.log('====================================');
-    console.log("Server is currently running on port 3000");
-    console.log('====================================')
-    connectDB();
-})
+const startServer = async () => {
+    await connectDB();
+    app.listen(ENV.PORT, () => {
+        console.log('====================================');
+        console.log("Server is currently running on port 3000");
+        console.log('====================================')
+    })
+};
+
+startServer();
