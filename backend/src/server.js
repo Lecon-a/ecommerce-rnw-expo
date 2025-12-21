@@ -11,7 +11,7 @@ const app = express();
 
 const __dirname = path.resolve();
 app.use(express.json());
-app.use(clerkMiddleware());
+app.use(clerkMiddleware()); // check for authentication
 app.use("/api/inngest", serve({client: inngest, functions}))
 
 app.get("/api/health", (req, res) => {
