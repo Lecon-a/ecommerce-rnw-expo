@@ -6,6 +6,12 @@ export async function addAddress(req, res) {
         const { label, fullName, streetAddress, city, state, zipCode, phoneNumber, isDefault } = req.body;
         const user = req.user;
 
+        if (!label || fullName || streetAddress ||
+            city || state || zipCode || phoneNumber ||
+            isDefault) {
+            return res.status(400).json({message: "Missing required address fields"})
+        }
+
         // if this is set as default, unset it 
         if (isDefault) {
             user.addresses.forEach(address => {
@@ -122,8 +128,9 @@ export async function addToWishlist(req, res) {
 }
 export async function getWishlist(req, res) {
     try {
-        const user = req.user;
-        return res.status(200).json({wishlist: user.wishlist})
+        // we're using populate because wishlist is just an array of product ids
+        const user = await User.findById(req.user._id).populate("wishlist");
+        return res.status(200).json({wishlist: user.wishlist}) 
         
     } catch (error) {
         console.log('====================================');
