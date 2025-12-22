@@ -7,8 +7,7 @@ export async function addAddress(req, res) {
         const user = req.user;
 
         if (!label || fullName || streetAddress ||
-            city || state || zipCode || phoneNumber ||
-            isDefault) {
+            city || state || zipCode || phoneNumber) {
             return res.status(400).json({message: "Missing required address fields"})
         }
 
