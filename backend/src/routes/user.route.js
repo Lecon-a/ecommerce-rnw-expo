@@ -11,6 +11,7 @@ import {
 import { protecteRoute } from "../middleware/auth.middleware.js";
  
 const userRouter = Router();
+
 userRouter.use(protecteRoute)
 // address route 
 userRouter.post("/addresses", addAddress)
