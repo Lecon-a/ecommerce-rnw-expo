@@ -1,5 +1,5 @@
-import { Order } from "../models/order.model";
-import { Product } from "../models/product.model";
+import { Order } from "../models/order.model.js";
+import { Product } from "../models/product.model.js";
 import { Review } from "../models/review.model.js";
 
 
@@ -10,9 +10,8 @@ export async function createOrder(req, res) {
         const { orderItems, shippingAddress, paymentResult, totalPrice } = req.body;
         const user = req.user;
 
-        if (!orderItems
-            || orderItems.length === 0) {
-            await session.startTransaction();
+        if (!orderItems || orderItems.length === 0) {
+            session.startTransaction();
             session.endSession();
             return res.status(400).json({ message: "No order items" })
         }
@@ -23,7 +22,7 @@ export async function createOrder(req, res) {
             const product = await Product.findById(item.product._id).session(session);
 
             if (!product) {
-                await session.startTransaction();
+                session.startTransaction();
                 session.endSession();
                 return res.status(404).json({message: `Product ${item.name} not found`})
             }
