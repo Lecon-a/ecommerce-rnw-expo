@@ -3,6 +3,7 @@ import { protecteRoute } from "../middleware/auth.middleware.js";
 import {
     
 } from "../controllers/product.controller.js";
+import { getAllProducts } from "../controllers/admin.controller.js";
 
 
 const productRouter = Router();
@@ -10,6 +11,7 @@ const productRouter = Router();
 productRouter.use(protecteRoute);
 
 productRouter.post("/", () => { });
-productRouter.get("/", () => { });
+productRouter.get("/", getAllProducts);
+productRouter.get("/:id", getProductById);
 
 export default productRouter;
