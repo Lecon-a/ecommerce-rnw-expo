@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { protecteRoute } from "../middleware/auth.middleware.js";
 import {
-    
+    getProductById
 } from "../controllers/product.controller.js";
 import { getAllProducts } from "../controllers/admin.controller.js";
 

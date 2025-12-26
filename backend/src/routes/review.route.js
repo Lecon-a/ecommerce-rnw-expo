@@ -13,6 +13,5 @@ reviewRouter.use(protecteRoute);
 
 reviewRouter.post("/", createReview);
 reviewRouter.delete("/:reviewId", deleteReview);
-reviewRouter.get("/", getAllReviews);
 
 export default reviewRouter;
