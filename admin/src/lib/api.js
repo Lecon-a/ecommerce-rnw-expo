@@ -24,7 +24,7 @@ export const orderApi = {
     },
 
     updateStatus: async ({orderId, status}) => {
-        const { data } = await axiosInstance.patch(`/admin/orders/${orderId}/status`, status);
+        const { data } = await axiosInstance.patch(`/admin/orders/${orderId}/status`, { status });
         return data;
     },
 }
