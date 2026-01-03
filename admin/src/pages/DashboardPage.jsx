@@ -25,13 +25,13 @@ const DashboardPage = () => {
   });
 
   // TODO: try send the last first order from the backend to the frontend
-  const recentOrders = ordersData?.orders.slice(0, 5) || [];
+  const recentOrders = ordersData?.orders?.slice(0, 5) || [];
   const statsCards = [
     {
       label: "Total Revenue",
       value: isLoadingStats
         ? "..."
-        : `$${statsData?.totalRevenue.toFixed(2) || 0}`,
+        : `$${statsData?.totalRevenue?.toFixed(2) || 0}`,
       icon: <DollarSignIcon className="size-8" />,
     },
     {
