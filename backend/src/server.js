@@ -18,6 +18,11 @@ const app = express();
 
 const __dirname = path.resolve();
 app.use(express.json());
+
+app.get("/api/health", (_, res) => {
+    res.status(200).json({ message: "Success" });
+})
+
 app.use(clerkMiddleware()); // check for authentication
 app.use(cors({origin: ENV.CLIENT_URL, Credential: true}));
 app.use("/api/inngest", serve({client: inngest, functions}))
@@ -27,10 +32,6 @@ app.use("/api/orders", orderRouter)
 app.use("/api/reviews", reviewRouter)
 app.use("/api/products", productRouter)
 app.use("/api/cart", cartRouter)
-
-app.get("/api/health", (_, res) => {
-    res.status(200).json({ message: "Success" });
-})
 
 // make our app ready for the deployment 
 if (ENV.MODE_ENV === "production") {
