@@ -65,8 +65,9 @@ const DashboardPage = () => {
           );
         })}
 
-        {/* RECENT ORDERS */}
-        <div className="card bg-base-100 shadow-xl">
+      </div>
+      {/* RECENT ORDERS */}
+      <div className="card bg-base-100 shadow-xl">
           <div className="card-body">
             <h1 className="card-title">Recent Orders</h1>
             {
@@ -128,7 +129,6 @@ const DashboardPage = () => {
               )
             }
           </div>
-        </div>
       </div>
     </div>
   );
