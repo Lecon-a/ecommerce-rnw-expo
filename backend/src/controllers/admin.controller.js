@@ -41,7 +41,7 @@ export async function createProduct(req, res) {
             images: imageUrls
         })
 
-        res.status(201).json(product)
+        return res.status(201).json({ product })
 
     } catch (error) {
         console.log('====================================');
@@ -54,7 +54,7 @@ export async function getAllProducts(_, res) {
     try {
         // -1 means in desc order or most recent products first
         const products = await Product.find().sort({ createdAt: -1 })
-        res.status(201).json(products);
+        return res.status(201).json(products);
     } catch (error) {
         console.log('====================================');
         console.log("Error fetching products", error);
@@ -92,7 +92,7 @@ export async function updateProduct(req, res) {
         }
 
         await product.save();
-        res.status(201).json(product);
+        return res.status(201).json(product);
 
     } catch (error) {
         console.log('====================================');
@@ -109,7 +109,7 @@ export const getAllOrders = async (_, res) => {
             .populate("orderItems.productId")
             .sort({ createdAt: -1 });
         ``
-        res.status(200).json({ orders })
+        return res.status(200).json({ orders })
 
     } catch (error) {
         console.log('====================================');
@@ -181,11 +181,7 @@ export const getDashboardStats = async (_, res) => {
         const totalCustomers = await User.countDocuments();
         const totalProducts = await Product.countDocuments();
 
-        console.log('====================================');
-        console.log("Dashboard Stats:", { totalOrders, totalRevenue, totalCustomers, totalProducts });
-        console.log('====================================');
-
-        res.status(200).json({
+        return res.status(200).json({
             totalOrders,
             totalRevenue,
             totalCustomers,

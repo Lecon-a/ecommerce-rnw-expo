@@ -19,6 +19,11 @@ const DashboardPage = () => {
     queryFn: statsApi.getDashboard,
   });
 
+  console.log('====================================');
+  console.log("Stats Data: ", statsData?.totalCustomers);
+  console.log("Stats Loading: ", isLoadingStats);
+  console.log('====================================');
+
   // TODO: try send the last first order from the backend to the frontend
   const recentOrders = ordersData?.orders.slice(0, 5) || [];
   const statsCards = [
@@ -31,17 +36,17 @@ const DashboardPage = () => {
     },
     {
       label: "Total Orders",
-      value: isLoadingStats ? "..." : `$${statsData?.totalOrders || 0}`,
+      value: isLoadingStats ? "..." : `${statsData?.totalOrders || 0}`,
       icon: <ShoppingBagIcon className="size-8" />,
     },
     {
       label: "Total Customers",
-      value: isLoadingStats ? "..." : `$${statsData?.totalCustomers || 0}`,
+      value: isLoadingStats ? "..." : `${statsData?.totalCustomers || 0}`,
       icon: <UsersIcon className="size-8" />,
     },
     {
       label: "Total Products",
-      value: isLoadingStats ? "..." : `$${statsData?.totalProducts || 0}`,
+      value: isLoadingStats ? "..." : `${statsData?.totalProducts || 0}`,
       icon: <PackageIcon className="size-8" />,
     },
   ];
