@@ -1,5 +1,6 @@
 export const capitalizeText = (text) => {
     if (!text) return text;
+    if (text.length === 1) return text.toUpperCase();
     return text.chatAt(0).toUpperCase() + text.slice(1)
 };
 
