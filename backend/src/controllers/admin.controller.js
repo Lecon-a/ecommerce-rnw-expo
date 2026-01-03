@@ -181,6 +181,10 @@ export const getDashboardStats = async (_, res) => {
         const totalCustomers = await User.countDocuments();
         const totalProducts = await Product.countDocuments();
 
+        console.log('====================================');
+        console.log("Dashboard Stats:", { totalOrders, totalRevenue, totalCustomers, totalProducts });
+        console.log('====================================');
+
         res.status(200).json({
             totalOrders,
             totalRevenue,
