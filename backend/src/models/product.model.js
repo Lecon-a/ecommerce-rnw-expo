@@ -1,11 +1,5 @@
 import mongoose, { mongo } from "mongoose";
 
-const imageSchema = new mongoose.Schema({
-    url: {
-        type: String,
-        required: true
-    }
-})
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -30,7 +24,10 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    images: [imageSchema],
+    images: [{
+        type: String,
+        required: true
+    }],
     averageRating: {
         type: Number,
         min: 0,

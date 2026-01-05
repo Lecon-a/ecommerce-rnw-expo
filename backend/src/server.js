@@ -46,7 +46,7 @@ const startServer = async () => {
     await connectDB();
     app.listen(ENV.PORT, () => {
         console.log('====================================');
-        console.log("Server is currently running on port 3000");
+        console.log("✅ Server is currently running on port 3000");
         console.log('====================================')
     })
 };
