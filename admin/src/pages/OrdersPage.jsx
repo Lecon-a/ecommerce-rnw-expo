@@ -77,7 +77,39 @@ const OrdersPage = () => {
                                   </td>
 
                                   <td>
-                                    <div className="font-medium">{  }</div>
+                                    <div className="font-medium">{order.shippingAddress.fullName}</div>
+                                    <div className="text-sm opacity-60">
+                                      {order.shippingAddress.city}, {order.shippingAddress.state}
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div className="font-medium">{totalQuantity} items</div>
+                                    <div className="text-sm opacity-60">
+                                      {order.orderItems[0]?.name}
+                                      {order.orderItems.length > 1 && ` +${order.orderItems.length - 1}more`}
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <span className="text-semibold">${ order.totalPrice.toFixed(2) }</span>
+                                  </td>
+
+                                  <td>
+                                    <select
+                                      value={order.status}
+                                      onChange={(e) => handleStatusChange(e.target.value)}
+                                      className="select select-sm"
+                                      disabled={updateStatusMutation.isPending}
+                                    >
+                                      <option value="pending">Pending</option>
+                                      <option value="shipped">Shipped</option>
+                                      <option value="delivered">Delivered</option>
+                                    </select>
+                                  </td>
+
+                                  <td>
+                                    <span className="text-sm opacity-60">{ formatDate(order.createdAt) }</span>
                                   </td>
                                 </tr>
                               )
