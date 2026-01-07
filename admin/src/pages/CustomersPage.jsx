@@ -30,7 +30,7 @@ function CustomersPage() {
               <span className="loading loading-spinner loading-lg" />
             </div>
             ) : (
-                customers?.length > 0 ? (
+                customers?.length === 0 ? (
                   <div className="text-center py-12 text-base-content/60">
                     <p className="text-xl font-semibold mb-2">No customers yet</p>
                     <p className="text-sm">Customers will appear here once they sign up</p>
