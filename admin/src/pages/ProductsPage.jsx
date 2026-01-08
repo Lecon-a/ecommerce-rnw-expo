@@ -90,7 +90,10 @@ const ProductsPage = () => {
       return alert("Please upload at least one image");
     }
 
-    const formDataToSend = formData;
+    const formDataToSend = new FormData();
+    console.log('====================================');
+    console.log(formDataToSend);
+    console.log('====================================');
     formDataToSend.append("name", formData.name);
     formDataToSend.append("description", formData.description);
     formDataToSend.append("category", formData.category);
