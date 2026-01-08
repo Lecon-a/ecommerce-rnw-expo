@@ -1,31 +1,35 @@
 import { Router } from "express";
 import {
-    createProduct,
-    getAllProducts,
-    updateProduct,
-    getAllOrders,
-    updateOrderStatus,
-    getAllCustomers,
-    getDashboardStats
+  createProduct,
+  getAllCustomers,
+  getAllOrders,
+  getAllProducts,
+  getDashboardStats,
+  updateOrderStatus,
+  updateProduct,
+  deleteProduct,
 } from "../controllers/admin.controller.js";
-import { adminOnly, protecteRoute } from "../middleware/auth.middleware.js";
+import { adminOnly, protectRoute } from "../middleware/auth.middleware.js";
 import { upload } from "../middleware/multer.middleware.js";
 
-
-const adminRouter = Router();
+const router = Router();
 
 // optimization - DRY
-// this runs before the another route 
-adminRouter.use(protecteRoute, adminOnly)
-// upload.array(key, max_image) - key would be used at the frontend
-adminRouter.post("/products", upload.array("images", 3), createProduct)
-adminRouter.get("/products", getAllProducts)
-adminRouter.put("/products/:id", upload.array("images", 3), updateProduct)
+router.use(protectRoute, adminOnly);
 
-adminRouter.get("/orders", getAllOrders)
-adminRouter.patch("/orders/:orderId/status", updateOrderStatus)
+router.post("/products", upload.array("images", 3), createProduct);
+router.get("/products", getAllProducts);
+router.put("/products/:id", upload.array("images", 3), updateProduct);
+router.delete("/products/:id", deleteProduct);
 
-adminRouter.get("/customers", getAllCustomers)
-adminRouter.get("/stats", getDashboardStats)
+router.get("/orders", getAllOrders);
+router.patch("/orders/:orderId/status", updateOrderStatus);
 
-export default adminRouter;
+router.get("/customers", getAllCustomers);
+
+router.get("/stats", getDashboardStats);
+
+// PUT: Used for full resource replacement, updating the entire resource
+// PATCH: Used for partial resource updates, updating a specific part of the resource
+
+export default router;
