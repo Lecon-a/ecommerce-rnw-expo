@@ -351,6 +351,7 @@ const ProductsPage = () => {
                <button
                  type="submit"
                  className="btn btn-primary"
+                 onClick={handleSubmit}
                  disabled={
                    createProductMutation.isPending ||
                    updateProductMutation.isPending
