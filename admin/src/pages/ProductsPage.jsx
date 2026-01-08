@@ -91,9 +91,7 @@ const ProductsPage = () => {
     }
 
     const formDataToSend = new FormData();
-    console.log('====================================');
-    console.log(formDataToSend);
-    console.log('====================================');
+    
     formDataToSend.append("name", formData.name);
     formDataToSend.append("description", formData.description);
     formDataToSend.append("category", formData.category);
@@ -105,6 +103,10 @@ const ProductsPage = () => {
       images.forEach(image => formDataToSend.append("images", image))
     }
 
+    console.log("====================================");
+    console.log(formDataToSend);
+    console.log("====================================");
+    
     if (editingProduct) {
       updateProductMutation.mutate({id: editingProduct._id, formData: formDataToSend});
     } else {
