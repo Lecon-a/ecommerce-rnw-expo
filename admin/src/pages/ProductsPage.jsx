@@ -90,7 +90,7 @@ const ProductsPage = () => {
       return alert("Please upload at least one image");
     }
 
-    const formDataToSend = new formData();
+    const formDataToSend = formData;
     formDataToSend.append("name", formData.name);
     formDataToSend.append("description", formData.description);
     formDataToSend.append("category", formData.category);
@@ -351,6 +351,7 @@ const ProductsPage = () => {
                <button
                  type="submit"
                  className="btn btn-primary"
+                 onClick={handleSubmit}
                  disabled={
                    createProductMutation.isPending ||
                    updateProductMutation.isPending
