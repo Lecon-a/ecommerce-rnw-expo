@@ -4,11 +4,11 @@ import { Alert } from "react-native"
 
 const useSocialAuth = () => {
 
-  const [isLoading, setIsLoading] = useState(false)
+  const [loadingStrategy, setLoadingStrategy] = useState<string | null>(null);
   const { startSSOFlow } = useSSO()
   
   const handleSocialAuth = async (strategy: "oauth_google" | "oauth_apple") => { 
-    setIsLoading(true);
+    setLoadingStrategy(strategy);
     try {
       const { createdSessionId, setActive } = await startSSOFlow({ strategy });
       if (createdSessionId && setActive) {
@@ -21,11 +21,11 @@ const useSocialAuth = () => {
       const providerName = strategy === "oauth_google" ? "Google" : "Apple";
       Alert.alert("Error", `Failed to authenticate using ${providerName}. Please try again.`);
     } finally { 
-      setIsLoading(false);
+      setLoadingStrategy(null);
     }
   }
 
-  return {isLoading, handleSocialAuth}
+  return {loadingStrategy, handleSocialAuth}
 }
 
 export default useSocialAuth
