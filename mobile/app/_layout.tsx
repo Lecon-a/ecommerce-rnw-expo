@@ -1,3 +1,4 @@
+import "../global.css"
 import { Stack } from "expo-router";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ClerkProvider } from "@clerk/clerk-expo";
