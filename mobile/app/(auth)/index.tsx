@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity, Alert, ActivityIndicator } from "r
 
 const AuthScreen = () => {
 
-  const { isLoading, handleSocialAuth } = useSocialAuth();
+  const { loadingStrategy, handleSocialAuth } = useSocialAuth();
 
   return (
     <View className="flex-1 justify-center items-center bg-white gap-4 px-8">
@@ -19,7 +19,7 @@ const AuthScreen = () => {
         <TouchableOpacity
           className="flex-row items-center justify-center border border-gray-300 rounded-full px-6 py-1"
           onPress={() => handleSocialAuth("oauth_google")}
-          disabled={isLoading}
+          disabled={loadingStrategy !== null}
           // style={{ 
           //   shadowOffset: { width: 0, height: 1 },
           //   shadowOpacity: 0.1,
@@ -27,7 +27,7 @@ const AuthScreen = () => {
           // }}
         >
           {
-            isLoading ? (
+            loadingStrategy === "oauth_google" ? (
               <ActivityIndicator size={"small"} color={"#4285f4"} />
             ) : 
             (<View className="flex-row items-center justify-center gap-2">
@@ -45,7 +45,7 @@ const AuthScreen = () => {
         <TouchableOpacity
           className="flex-row items-center justify-center border border-gray-300 rounded-full px-6 py-2"
           onPress={() => handleSocialAuth("oauth_apple")}
-          disabled={isLoading}
+          disabled={loadingStrategy !== null}
           // style={{ 
           //   shadowOffset: { width: 0, height: 1 },
           //   shadowOpacity: 0.1,
@@ -53,7 +53,7 @@ const AuthScreen = () => {
           // }}
         >
           {
-            isLoading ? (
+            loadingStrategy === "oauth_apple" ? (
               <ActivityIndicator size={"small"} color={"#4285f4"} />
             ) : 
             (<View className="flex-row items-center justify-center gap-2">
