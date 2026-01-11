@@ -8,11 +8,11 @@ import {
     getWishlist,
     removeFromWishlist
 } from "../controllers/user.controller.js";
-import { protecteRoute } from "../middleware/auth.middleware.js";
+import { protectRoute } from "../middleware/auth.middleware.js";
  
 const userRouter = Router();
 
-userRouter.use(protecteRoute)
+userRouter.use(protectRoute)
 // address route 
 userRouter.post("/addresses", addAddress)
 userRouter.get("/addresses", getAddresses)

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { protecteRoute } from "../middleware/auth.middleware.js";
+import { protectRoute } from "../middleware/auth.middleware.js";
 import {
     createReview,
     getAllReviews,
@@ -9,7 +9,7 @@ import {
 
 const reviewRouter = Router();
 
-reviewRouter.use(protecteRoute);
+reviewRouter.use(protectRoute);
 
 reviewRouter.post("/", createReview);
 reviewRouter.delete("/:reviewId", deleteReview);

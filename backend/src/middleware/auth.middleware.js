@@ -3,7 +3,7 @@ import { User } from "../models/user.model.js";
 import { ENV } from "../config/env.js";
 
 
-export const protecteRoute = [
+export const protectRoute = [
     requireAuth(),
     async (req, res, next) => {
         try {
