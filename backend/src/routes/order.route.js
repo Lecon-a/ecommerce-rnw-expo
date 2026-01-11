@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { protecteRoute } from "../middleware/auth.middleware.js";
+import { protectRoute } from "../middleware/auth.middleware.js";
 import {
     createOrder,
     getUserOrders,
@@ -8,7 +8,7 @@ import {
 
 const orderRouter = Router();
 
-orderRouter.use(protecteRoute);
+orderRouter.use(protectRoute);
 
 orderRouter.post("/", createOrder);
 orderRouter.get("/", getUserOrders);

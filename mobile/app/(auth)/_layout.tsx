@@ -8,8 +8,7 @@ export default function AuthRoutesLayout() {
   if (!isLoaded) return null; // for a better ux
 
   if (isSignedIn) {
-    // return <Redirect href={"/"} />;
-    return <View className="flex-1 justify-center items-center"><Text>Welcome to SPa ecommerce website</Text></View>;
+    return <Redirect href={"/(tabs)"} />;
   }
 
   return <Stack screenOptions={{ headerShown: false }} />;
