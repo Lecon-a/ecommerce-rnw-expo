@@ -42,7 +42,7 @@ export async function addToCart(req, res) {
         
         if (!cart) {
             cart = await Cart.create({
-                user: user._id,
+                userId: user._id,
                 clerkId: user.clerkId,
                 items: [],
             });

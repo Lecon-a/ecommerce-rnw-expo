@@ -22,9 +22,6 @@ export const useApi = () => {
         const interceptor = api.interceptors.request.use(async (config) => {
             const token = await getToken();
 
-            console.log('Attaching token to request:', token);
-            
-
             if (token) {
                 config.headers.Authorization = `Bearer ${token}`;
             }

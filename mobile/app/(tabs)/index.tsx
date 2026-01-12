@@ -6,28 +6,42 @@ import {
   TextInput, 
   Image
 } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useMemo  } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import SafeScreen from '@/components/SafeScreen'
 import ProductsGrid from '@/components/ProductsGrid'
 import useProducts from '@/hooks/useProducts'
-import { useAuth } from '@clerk/clerk-expo'
 
 const ShopScreen = () => {
 
     const { data: products, isLoading, isError } = useProducts();
-    const { signOut } = useAuth();
-
-    const handleSignOut = async () => {
-      try {
-        await signOut();
-        // Optional: Redirect user or update UI state here
-      } catch (err) {
-        console.error('Error signing out:', err);
-      }
-    };
+    
+    
     const [searchQuery, setSearchQuery] = useState<string>("")
     const [selectedCategory, setSelectedCategory] = useState<string>("All")
+    
+    const filteredProducts = useMemo(() => {
+      if (!products) return [];
+
+      let filtered = products;
+
+      // Filter by category query
+      if (selectedCategory !== "All") {
+        filtered = filtered.filter(
+          (product) => product.category === selectedCategory
+        );
+    }
+
+    // Filter by search query
+    const query = searchQuery.trim();
+    if (query) {
+      filtered = filtered.filter((product) => product.name.toLowerCase().includes(query.toLowerCase()))
+    }
+
+    return filtered;
+
+
+  }, [products, selectedCategory, searchQuery]);
 
     const CATEGORIES = [
       { name: "All", icon: "grid-outline" as const },
@@ -46,10 +60,6 @@ const ShopScreen = () => {
         >
           {/* HEADER COMPONENT */}
           <View className='px-6 pb-4 pt-6'>
-
-            <TouchableOpacity onPress={handleSignOut} >
-              <Text className='text-text-primary'>Logout</Text>
-            </TouchableOpacity>
             
             <View className='flex-row justify-between items-start mb-6'>
               <View>
@@ -111,11 +121,11 @@ const ShopScreen = () => {
           <View className='px-6 mb-6 gap-2'>
             <View className='flex-row items-center justify-between'>
               <Text className='text-text-primary text-lg font-bold'>Products</Text>
-              <Text className='text-text-secondary text-sm'>10 items</Text>
+              <Text className='text-text-secondary text-sm'>{`${filteredProducts?.length} ${filteredProducts?.length === 1 ? "item" : "items"}`}</Text>
             </View>
 
             {/* PRODUCTS GRID */}
-            <ProductsGrid />
+            <ProductsGrid products={filteredProducts} isLoading={isLoading} isError={isError} />
           </View>
 
         </ScrollView>
