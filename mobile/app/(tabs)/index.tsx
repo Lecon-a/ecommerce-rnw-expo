@@ -4,13 +4,15 @@ import {
   View, 
   TouchableOpacity, 
   TextInput, 
-  Image
+  Image,
+  Button
 } from 'react-native'
 import React, { useState, useMemo  } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import SafeScreen from '@/components/SafeScreen'
 import ProductsGrid from '@/components/ProductsGrid'
 import useProducts from '@/hooks/useProducts'
+import * as Sentry from '@sentry/react-native';
 
 const ShopScreen = () => {
 
@@ -91,6 +93,7 @@ const ShopScreen = () => {
           </View>
 
           {/* CATEGORIES COMPONENT */}
+
           <View className='mb-6'>
             <ScrollView
               horizontal={true}
